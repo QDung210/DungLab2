@@ -262,24 +262,6 @@ if st.session_state.current_image is not None:
         # Nút ẩn histogram
         if st.button("Ẩn histogram"):
             st.session_state.show_histogram = False
-    
-    # =============================================================================
-    # TẢI XUỐNG ẢNH
-    # =============================================================================
-    st.subheader("💾 Tải xuống")
-    
-    # Tạo buffer cho ảnh
-    img_buffer = io.BytesIO()
-    pil_img = Image.fromarray(st.session_state.current_image)
-    pil_img.save(img_buffer, format='PNG')
-    img_buffer.seek(0)
-    
-    st.download_button(
-        label="📥 Tải xuống ảnh đã xử lý",
-        data=img_buffer,
-        file_name="processed_image.png",
-        mime="image/png"
-    )
 
 else:
     # Hiển thị hướng dẫn khi chưa có ảnh
@@ -297,14 +279,6 @@ else:
        - Lọc Gaussian: Làm mờ mịn hơn
        - Khử Gaussian: Tăng cường độ sắc nét (Unsharp Masking)
     5. **🎲 Test**: Thêm nhiễu để test các bộ lọc
-    6. **💾 Tải xuống**: Lưu ảnh đã xử lý
-    
-    ### 🔧 Các cải tiến mới:
-    - ✅ **Khử Gaussian** với kỹ thuật Unsharp Masking
-    - ✅ **Histogram so sánh** giữa ảnh gốc và ảnh xử lý
-    - ✅ **Nhiễu Gaussian** bổ sung
-    - ✅ **Thông báo trạng thái** khi áp dụng filter
-    - ✅ **Tải xuống ảnh** đã xử lý
     """)
 
 # =============================================================================
